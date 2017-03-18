@@ -36,7 +36,7 @@ var DecisionTask = (function (_super) {
         return JSON.stringify({
             input: input,
             env: overrideEnv || this.getEnv(),
-            initialEnv: initialEnv || {},
+            initialEnv: initialEnv || null,
             originWorkflow: this.getOriginWorkflow()
         });
     };
@@ -163,7 +163,7 @@ var DecisionTask = (function (_super) {
             }
         });
     };
-    DecisionTask.prototype.startChildWorkflow = function (workflowId, input, opts, overrideEnv) {
+    DecisionTask.prototype.startChildWorkflow = function (workflowId, input, opts, overrideEnv, initialEnv) {
         if (opts === void 0) { opts = {}; }
         var maxRetry = opts['maxRetry'];
         this.decisions.push({
@@ -177,7 +177,7 @@ var DecisionTask = (function (_super) {
                         name: this.workflow.name,
                         version: this.workflow.version
                     },
-                    input: this.buildTaskInput(input, overrideEnv),
+                    input: this.buildTaskInput(input, overrideEnv, initialEnv),
                     control: JSON.stringify(this.buildInitialControlDoc(maxRetry))
                 }
             }

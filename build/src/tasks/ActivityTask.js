@@ -73,6 +73,9 @@ var ActivityTask = (function (_super) {
     ActivityTask.prototype.getInput = function () {
         return this.taskInput.input;
     };
+    ActivityTask.prototype.getInitialEnv = function () {
+        return this.taskInput.initialEnv || null;
+    };
     ActivityTask.prototype.getEnv = function () {
         return this.taskInput.env || {};
     };

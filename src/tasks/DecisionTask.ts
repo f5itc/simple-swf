@@ -58,7 +58,7 @@ export class DecisionTask extends Task<SWF.DecisionTask> {
     return JSON.stringify({
       input: input,
       env: overrideEnv || this.getEnv(),
-      initialEnv: initialEnv || {},
+      initialEnv: initialEnv || null,
       originWorkflow: this.getOriginWorkflow()
     } as TaskInput)
   }
@@ -191,7 +191,7 @@ export class DecisionTask extends Task<SWF.DecisionTask> {
       }
     })
   }
-  startChildWorkflow(workflowId: string, input: any, opts: ConfigOverride = {}, overrideEnv?: any) {
+  startChildWorkflow(workflowId: string, input: any, opts: ConfigOverride = {}, overrideEnv?: any, initialEnv?: any) {
     let maxRetry = opts['maxRetry'] as number
     this.decisions.push({
       entities: ['workflow', 'decision'],
@@ -204,7 +204,7 @@ export class DecisionTask extends Task<SWF.DecisionTask> {
             name: this.workflow.name,
             version: this.workflow.version
           },
-          input: this.buildTaskInput(input, overrideEnv),
+          input: this.buildTaskInput(input, overrideEnv, initialEnv),
           control: JSON.stringify(this.buildInitialControlDoc(maxRetry))
         }
       }

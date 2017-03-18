@@ -38,14 +38,14 @@ var Activity = (function (_super) {
     Activity.prototype.stop = function (reason, cb) {
         throw new Error('this method must be overriden!');
     };
-    Activity.prototype.run = function (input, env, cb) {
+    Activity.prototype.run = function (input, env, initialEnv, cb) {
         throw new Error('this method must be overriden!');
     };
     Activity.prototype._start = function (cb) {
         var _this = this;
         this.startHeartbeat();
         this.taskStatus = TaskState.Started;
-        this.run(this.task.getInput(), this.task.getEnv(), function (err, details) {
+        this.run(this.task.getInput(), this.task.getEnv(), this.task.getInitialEnv(), function (err, details) {
             _this.stopHeartbeat();
             // if a task is canceled before we call to respond, don't respond
             if (_this.taskStatus === TaskState.Canceled)

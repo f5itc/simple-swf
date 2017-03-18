@@ -27,7 +27,7 @@ export declare class Activity extends EventEmitter {
     stop(reason: StopReasons | null, cb: {
         (err: CodedError, details: TaskStatus | null);
     }): void;
-    run(input: any, env: Object | null, cb: {
+    run(input: any, env: Object | null, initialEnv: Object | null, cb: {
         (err: CodedError, details: TaskStatus);
     }): void;
     _start(cb: {

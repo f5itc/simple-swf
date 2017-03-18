@@ -44,14 +44,14 @@ export class Activity extends EventEmitter {
   stop(reason: StopReasons | null, cb: {(err: CodedError, details: TaskStatus | null)}) {
     throw new Error('this method must be overriden!')
   }
-  run(input: any, env: Object | null, cb: {(err: CodedError, details: TaskStatus)}) {
+  run(input: any, env: Object | null, initialEnv: Object | null, cb: {(err: CodedError, details: TaskStatus)}) {
     throw new Error('this method must be overriden!')
   }
 
   _start(cb: {(err: CodedError, success: boolean, details?: TaskStatus)}) {
     this.startHeartbeat()
     this.taskStatus = TaskState.Started
-    this.run(this.task.getInput(), this.task.getEnv(), (err, details) => {
+    this.run(this.task.getInput(), this.task.getEnv(), this.task.getInitialEnv(), (err, details) => {
       this.stopHeartbeat()
       // if a task is canceled before we call to respond, don't respond
       if (this.taskStatus === TaskState.Canceled) return

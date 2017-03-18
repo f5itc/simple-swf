@@ -38,7 +38,7 @@ export declare class DecisionTask extends Task<SWF.DecisionTask> {
     rescheduleTask(taskAttrs: SWF.ScheduleActivityTaskDecisionAttributes): boolean;
     rescheduleChild(childAttrs: SWF.StartChildWorkflowExecutionDecisionAttributes): boolean;
     scheduleTask(activityId: string, input: any, activity: ActivityType, opts?: ConfigOverride, overrideEnv?: any, initialEnv?: any): void;
-    startChildWorkflow(workflowId: string, input: any, opts?: ConfigOverride, overrideEnv?: any): void;
+    startChildWorkflow(workflowId: string, input: any, opts?: ConfigOverride, overrideEnv?: any, initialEnv?: any): void;
     failWorkflow(reason: string, details: string, opts?: ConfigOverride): void;
     completeWorkflow(result: TaskStatus, opts?: ConfigOverride, overrideEnv?: any): void;
     addMarker(markerName: string, details: any, opts?: ConfigOverride): void;
