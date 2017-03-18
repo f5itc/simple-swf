@@ -18,11 +18,36 @@ var EventRollup = (function () {
             workflow: _.filter(this.data.workflow || [], { current: 'failed' })
         };
     };
-    EventRollup.prototype.getPendingEvents = function () {
-        return {
-            activity: _.filter(this.data.activity || [], { current: 'failed' }),
-            workflow: _.filter(this.data.workflow || [], { current: 'failed' })
-        };
+    EventRollup.prototype.getRetryableFailedToScheduleEvents = function () {
+        var activity = _.filter(this.data.activity || [], function (event) {
+            if (event.current !== 'failedToSchedule') {
+                return false;
+            }
+            else {
+                var retryableCauses = [
+                    'OPEN_ACTIVITIES_LIMIT_EXCEEDED',
+                    'ACTIVITY_CREATION_RATE_EXCEEDED'
+                ];
+                return retryableCauses.indexOf(event.failedToSchedule.scheduleActivityTaskFailedEventAttributes.cause) > -1;
+            }
+        });
+        var workflow = _.filter(this.data.workflow || [], function (event) {
+            if (event.current !== 'failedToSchedule') {
+                return false;
+            }
+            else {
+                var retryableCauses = [
+                    'OPEN_WORKFLOWS_LIMIT_EXCEEDED',
+                    'OPEN_CHILDREN_LIMIT_EXCEEDED',
+                    'CHILD_CREATION_RATE_EXCEEDED'
+                ];
+                return retryableCauses.indexOf(event.failedToSchedule.startChildWorkflowExecutionFailedEventAttributes.cause) > -1;
+            }
+        });
+        if (!activity.length && !workflow.length) {
+            return false;
+        }
+        return { activity: activity, workflow: workflow };
     };
     EventRollup.prototype.buildEnv = function (currentEnv, completed) {
         if (!completed)

@@ -37,6 +37,6 @@ export declare class EventRollup {
     constructor(rawTask: SWF.DecisionTask, workflowEnv?: Object);
     getTimedOutEvents(): SelectedEvents;
     getFailedEvents(): SelectedEvents;
-    getPendingEvents(): SelectedEvents;
+    getRetryableFailedToScheduleEvents(): SelectedEvents | false;
     buildEnv(currentEnv: Object, completed?: any[]): Object;
 }

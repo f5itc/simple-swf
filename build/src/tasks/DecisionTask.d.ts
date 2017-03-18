@@ -5,7 +5,7 @@ import { Workflow } from '../entities/Workflow';
 import { ActivityType } from '../entities/ActivityType';
 import { FieldSerializer } from '../util/FieldSerializer';
 import { EntityTypes, TaskInput, TaskStatus } from '../interfaces';
-import { Event, EventData } from './EventRollup';
+import { Event, EventData, SelectedEvents } from './EventRollup';
 import { ConfigOverride } from '../SWFConfig';
 export interface Decision {
     entities: EntityTypes[];
@@ -26,7 +26,7 @@ export declare class DecisionTask extends Task<SWF.DecisionTask> {
     getWorkflowTaskInput(): TaskInput;
     getWorkflowInput(): any;
     setExecutionContext(context: any): void;
-    private buildTaskInput(input, overrideEnv?);
+    private buildTaskInput(input, overrideEnv?, initialEnv?);
     private encodeExecutionContext(cb);
     private wrapDecisions(decisions, cb);
     sendDecisions(cb: any): void;
@@ -37,7 +37,7 @@ export declare class DecisionTask extends Task<SWF.DecisionTask> {
     private rescheduleOfType<T>(toReschedule, attrName, addFunc);
     rescheduleTask(taskAttrs: SWF.ScheduleActivityTaskDecisionAttributes): boolean;
     rescheduleChild(childAttrs: SWF.StartChildWorkflowExecutionDecisionAttributes): boolean;
-    scheduleTask(activityId: string, input: any, activity: ActivityType, opts?: ConfigOverride, overrideEnv?: any): void;
+    scheduleTask(activityId: string, input: any, activity: ActivityType, opts?: ConfigOverride, overrideEnv?: any, initialEnv?: any): void;
     startChildWorkflow(workflowId: string, input: any, opts?: ConfigOverride, overrideEnv?: any): void;
     failWorkflow(reason: string, details: string, opts?: ConfigOverride): void;
     completeWorkflow(result: TaskStatus, opts?: ConfigOverride, overrideEnv?: any): void;
@@ -50,6 +50,7 @@ export declare class DecisionTask extends Task<SWF.DecisionTask> {
     scheduleLambda(lambdaName: string, id: string, input: any, opts?: ConfigOverride, overrideEnv?: any): void;
     getDecisionInfo(): DecisionRollup;
     getGroupedEvents(): EventData;
+    getRetryableFailedToScheduleEvents(): SelectedEvents | false;
     getEnv(): Object;
     getOriginWorkflow(): string;
     private buildInitialControlDoc(maxRetry?);

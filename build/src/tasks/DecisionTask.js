@@ -32,10 +32,11 @@ var DecisionTask = (function (_super) {
     DecisionTask.prototype.setExecutionContext = function (context) {
         this.executionContext = context;
     };
-    DecisionTask.prototype.buildTaskInput = function (input, overrideEnv) {
+    DecisionTask.prototype.buildTaskInput = function (input, overrideEnv, initialEnv) {
         return JSON.stringify({
             input: input,
             env: overrideEnv || this.getEnv(),
+            initialEnv: initialEnv || {},
             originWorkflow: this.getOriginWorkflow()
         });
     };
@@ -141,10 +142,10 @@ var DecisionTask = (function (_super) {
         });
         return true;
     };
-    DecisionTask.prototype.scheduleTask = function (activityId, input, activity, opts, overrideEnv) {
+    DecisionTask.prototype.scheduleTask = function (activityId, input, activity, opts, overrideEnv, initialEnv) {
         if (opts === void 0) { opts = {}; }
         var maxRetry = opts['maxRetry'] || activity.maxRetry;
-        var taskInput = this.buildTaskInput(input, overrideEnv);
+        var taskInput = this.buildTaskInput(input, overrideEnv, initialEnv);
         this.decisions.push({
             entities: ['activity'],
             overrides: opts,
@@ -319,6 +320,9 @@ var DecisionTask = (function (_super) {
     };
     DecisionTask.prototype.getGroupedEvents = function () {
         return this.rollup.data;
+    };
+    DecisionTask.prototype.getRetryableFailedToScheduleEvents = function () {
+        return this.rollup.getRetryableFailedToScheduleEvents();
     };
     DecisionTask.prototype.getEnv = function () {
         return this.rollup.env || {};

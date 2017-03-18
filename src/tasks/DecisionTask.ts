@@ -7,7 +7,7 @@ import { Workflow } from '../entities/Workflow'
 import { ActivityType } from '../entities/ActivityType'
 import { FieldSerializer } from '../util/FieldSerializer'
 import { CodedError, EntityTypes, TaskInput, TaskStatus } from '../interfaces'
-import { EventRollup, Event, EventData } from './EventRollup'
+import { EventRollup, Event, EventData, SelectedEvents } from './EventRollup'
 import { ConfigOverride } from '../SWFConfig'
 import { DecisionTypeAttributeMap } from '../util'
 
@@ -54,10 +54,11 @@ export class DecisionTask extends Task<SWF.DecisionTask> {
   setExecutionContext(context: any) {
     this.executionContext = context
   }
-  private buildTaskInput(input: any, overrideEnv?: any): string {
+  private buildTaskInput(input: any, overrideEnv?: any, initialEnv?: any): string {
     return JSON.stringify({
       input: input,
       env: overrideEnv || this.getEnv(),
+      initialEnv: initialEnv || {},
       originWorkflow: this.getOriginWorkflow()
     } as TaskInput)
   }
@@ -170,9 +171,9 @@ export class DecisionTask extends Task<SWF.DecisionTask> {
     })
     return true
   }
-  scheduleTask(activityId: string, input: any, activity: ActivityType, opts: ConfigOverride = {}, overrideEnv?: any) {
+  scheduleTask(activityId: string, input: any, activity: ActivityType, opts: ConfigOverride = {}, overrideEnv?: any, initialEnv?: any) {
     let maxRetry = opts['maxRetry'] as number || activity.maxRetry
-    let taskInput = this.buildTaskInput(input, overrideEnv)
+    let taskInput = this.buildTaskInput(input, overrideEnv, initialEnv)
     this.decisions.push({
       entities: ['activity'],
       overrides: opts,
@@ -337,6 +338,9 @@ export class DecisionTask extends Task<SWF.DecisionTask> {
   }
   getGroupedEvents(): EventData {
     return this.rollup.data
+  }
+  getRetryableFailedToScheduleEvents(): SelectedEvents | false {
+    return this.rollup.getRetryableFailedToScheduleEvents()
   }
   getEnv(): Object {
     return this.rollup.env || {}
