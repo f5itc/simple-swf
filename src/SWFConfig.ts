@@ -11,7 +11,8 @@ export enum ConfigDefaultUnit {
   Day,
   Enum,
   String,
-  Number
+  Number,
+  Array
 }
 export interface MappingValue {
   api: string,

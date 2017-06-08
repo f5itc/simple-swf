@@ -11,6 +11,7 @@ var _ = require('lodash');
     ConfigDefaultUnit[ConfigDefaultUnit["Enum"] = 2] = "Enum";
     ConfigDefaultUnit[ConfigDefaultUnit["String"] = 3] = "String";
     ConfigDefaultUnit[ConfigDefaultUnit["Number"] = 4] = "Number";
+    ConfigDefaultUnit[ConfigDefaultUnit["Array"] = 5] = "Array";
 })(exports.ConfigDefaultUnit || (exports.ConfigDefaultUnit = {}));
 var ConfigDefaultUnit = exports.ConfigDefaultUnit;
 var SWFConfig = (function () {

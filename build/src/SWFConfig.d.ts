@@ -5,6 +5,7 @@ export declare enum ConfigDefaultUnit {
     Enum = 2,
     String = 3,
     Number = 4,
+    Array = 5,
 }
 export interface MappingValue {
     api: string;
