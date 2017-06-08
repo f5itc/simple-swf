@@ -1,11 +1,18 @@
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var events_1 = require('events');
-var interfaces_1 = require('../interfaces');
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var events_1 = require("events");
+var interfaces_1 = require("../interfaces");
+var TaskState;
 (function (TaskState) {
     TaskState[TaskState["Started"] = 0] = "Started";
     TaskState[TaskState["Stopped"] = 1] = "Stopped";
@@ -13,8 +20,7 @@ var interfaces_1 = require('../interfaces');
     TaskState[TaskState["Finished"] = 3] = "Finished";
     TaskState[TaskState["Canceled"] = 4] = "Canceled";
     TaskState[TaskState["Failed"] = 5] = "Failed";
-})(exports.TaskState || (exports.TaskState = {}));
-var TaskState = exports.TaskState;
+})(TaskState = exports.TaskState || (exports.TaskState = {}));
 // this is really an abstract class, but there isn't
 // of expressing abstract static methods or passing a generic type
 // make up for this by throwing errors (which is better for non-ts code anyways)
@@ -23,14 +29,15 @@ var Activity = (function (_super) {
     // this constructor is not to be called by the user, it gets created
     // when an activity of this type exists
     function Activity(workflow, activityType, task) {
-        _super.call(this);
-        this.task = task;
-        this.workflow = workflow;
+        var _this = _super.call(this) || this;
+        _this.task = task;
+        _this.workflow = workflow;
         // heartbeatTimout is in seconds, convert to milliseconds
-        this.heartbeatInterval = activityType.heartbeatTimeout(workflow.config) * 1000;
-        this.activityType = activityType;
-        this.taskStatus = TaskState.Stopped;
-        this.id = task.rawTask.activityId;
+        _this.heartbeatInterval = activityType.heartbeatTimeout(workflow.config) * 1000;
+        _this.activityType = activityType;
+        _this.taskStatus = TaskState.Stopped;
+        _this.id = task.rawTask.activityId;
+        return _this;
     }
     Activity.prototype.status = function () {
         return { status: 'UNKNOWN' };

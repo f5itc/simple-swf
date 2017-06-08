@@ -1,5 +1,3 @@
-/// <reference types="node" />
-/// <reference types="chai" />
 import { ConfigOverride } from '../SWFConfig';
 import { ClaimCheck } from './ClaimCheck';
 export declare const DefaultFields: string[];

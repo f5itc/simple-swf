@@ -1,9 +1,10 @@
 "use strict";
-var entities_1 = require('../../src/entities');
-var SWFConfig_1 = require('../../src/SWFConfig');
-var aws_sdk_1 = require('aws-sdk');
-var chai_1 = require('chai');
-var sinonHelper_1 = require('../sinonHelper');
+Object.defineProperty(exports, "__esModule", { value: true });
+var entities_1 = require("../../src/entities");
+var SWFConfig_1 = require("../../src/SWFConfig");
+var aws_sdk_1 = require("aws-sdk");
+var chai_1 = require("chai");
+var sinonHelper_1 = require("../sinonHelper");
 describe('Domain', function () {
     describe('constructor', function () {
         var sandbox = sinonHelper_1.default();

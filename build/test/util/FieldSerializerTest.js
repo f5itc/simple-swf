@@ -1,17 +1,24 @@
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var chai_1 = require('chai');
-var crypto = require('crypto');
-var util_1 = require('../../src/util');
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var chai_1 = require("chai");
+var crypto = require("crypto");
+var util_1 = require("../../src/util");
 var MockClaimCheck = (function (_super) {
     __extends(MockClaimCheck, _super);
     function MockClaimCheck() {
-        _super.call(this);
-        this.db = {};
+        var _this = _super.call(this) || this;
+        _this.db = {};
+        return _this;
     }
     MockClaimCheck.prototype.buildCheck = function (input, cb) {
         var hashed = crypto.createHash('sha1').update(input).digest('hex');

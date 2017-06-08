@@ -128,6 +128,27 @@ export class Workflow {
         value: 'TERMINATE',
         unit: ConfigDefaultUnit.Enum
       },
+      tagList: {
+        description: 'Tags to be set on workflow for filtered querying',
+        mappings: [
+          {
+            api: 'respondDecisionTaskCompleted',
+            attribute: 'continueAsNewWorkflowExecutionDecisionAttributes',
+            name: 'tagList'
+          },
+          {
+            api: 'respondDecisionTaskCompleted',
+            attribute: 'startChildWorkflowExecutionDecisionAttributes',
+            name: 'tagList'
+          },
+          {api: 'startWorkflowExecution', name: 'tagList'}
+        ],
+        value: null,
+        format: function (value) {
+          return value
+        },
+        unit: ConfigDefaultUnit.Array
+      },
       taskList: {
         description: 'The defaultTaskList that will be assigned to activities in this workflow, see SWF docs for task list details',
         mappings: [

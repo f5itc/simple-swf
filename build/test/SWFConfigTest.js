@@ -1,7 +1,8 @@
 "use strict";
-var chai_1 = require('chai');
-var SWFConfig_1 = require('../src/SWFConfig');
-var entities_1 = require('../src/entities');
+Object.defineProperty(exports, "__esModule", { value: true });
+var chai_1 = require("chai");
+var SWFConfig_1 = require("../src/SWFConfig");
+var entities_1 = require("../src/entities");
 describe('SWFConfig', function () {
     describe('constructor', function () {
         var config = new SWFConfig_1.SWFConfig();

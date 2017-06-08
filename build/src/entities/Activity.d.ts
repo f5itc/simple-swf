@@ -1,5 +1,4 @@
 /// <reference types="node" />
-/// <reference types="chai" />
 import { EventEmitter } from 'events';
 import { ActivityType } from './ActivityType';
 import { Workflow } from './Workflow';

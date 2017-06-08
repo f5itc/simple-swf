@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { SWF, Request } from 'aws-sdk';
 import { DecisionTask } from '../tasks';
 import { Decider, Workflow } from '../entities';

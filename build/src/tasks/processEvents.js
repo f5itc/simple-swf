@@ -39,7 +39,8 @@
  * }
 */
 "use strict";
-var _ = require('lodash');
+Object.defineProperty(exports, "__esModule", { value: true });
+var _ = require("lodash");
 // short hand name for states
 exports.states = {
     SCH: 'scheduled',
@@ -59,7 +60,7 @@ var log = {
     error: function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i - 0] = arguments[_i];
+            args[_i] = arguments[_i];
         }
     }
 };

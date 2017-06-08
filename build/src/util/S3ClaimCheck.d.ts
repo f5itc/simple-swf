@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { S3 } from 'aws-sdk';
 import { ClaimCheck, CheckFormat } from './ClaimCheck';
 export interface S3CheckFormat extends CheckFormat {

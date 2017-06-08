@@ -1,6 +1,7 @@
 "use strict";
-var Sinon = require('sinon');
-var _ = require('lodash');
+Object.defineProperty(exports, "__esModule", { value: true });
+var Sinon = require("sinon");
+var _ = require("lodash");
 var SinonHelper = (function () {
     function SinonHelper() {
     }
@@ -47,6 +48,5 @@ function newContext() {
     });
     return helper;
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = newContext;
 //# sourceMappingURL=sinonHelper.js.map

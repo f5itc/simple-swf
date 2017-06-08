@@ -1,22 +1,29 @@
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var _ = require('lodash');
-var SWFConfig_1 = require('../SWFConfig');
-var interfaces_1 = require('../interfaces');
-var ActivityTypeInfo_1 = require('./ActivityTypeInfo');
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var _ = require("lodash");
+var SWFConfig_1 = require("../SWFConfig");
+var interfaces_1 = require("../interfaces");
+var ActivityTypeInfo_1 = require("./ActivityTypeInfo");
 var ActivityType = (function (_super) {
     __extends(ActivityType, _super);
     function ActivityType(name, version, HandlerClass, opts) {
         if (opts === void 0) { opts = {}; }
-        _super.call(this, name, version);
-        this.HandlerClass = HandlerClass;
-        this.opts = opts;
-        this.maxRetry = opts['maxRetry'] || 5;
-        this.domainScope = {};
+        var _this = _super.call(this, name, version) || this;
+        _this.HandlerClass = HandlerClass;
+        _this.opts = opts;
+        _this.maxRetry = opts['maxRetry'] || 5;
+        _this.domainScope = {};
+        return _this;
     }
     ActivityType.prototype.ensureActivityType = function (domain, cb) {
         var defaults = domain.config.populateDefaults({ entities: ['activity'], api: 'registerActivityType' }, this.opts);

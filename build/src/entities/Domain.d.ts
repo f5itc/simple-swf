@@ -1,5 +1,3 @@
-/// <reference types="node" />
-/// <reference types="chai" />
 import { SWF } from 'aws-sdk';
 import { ConfigGroup, SWFConfig, ConfigOverride } from '../SWFConfig';
 import { WorkflowExecution } from './WorkflowExecution';

@@ -1,4 +1,3 @@
-/// <reference types="node" />
 export interface CheckFormat {
     _claimCheck: boolean;
     key: string;

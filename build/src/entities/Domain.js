@@ -1,10 +1,11 @@
 "use strict";
-var aws_sdk_1 = require('aws-sdk');
-var _ = require('lodash');
-var SWFConfig_1 = require('../SWFConfig');
-var interfaces_1 = require('../interfaces');
-var Workflow_1 = require('./Workflow');
-var ActivityTypeInfo_1 = require('./ActivityTypeInfo');
+Object.defineProperty(exports, "__esModule", { value: true });
+var aws_sdk_1 = require("aws-sdk");
+var _ = require("lodash");
+var SWFConfig_1 = require("../SWFConfig");
+var interfaces_1 = require("../interfaces");
+var Workflow_1 = require("./Workflow");
+var ActivityTypeInfo_1 = require("./ActivityTypeInfo");
 var objectAssign = require('object-assign');
 var Domain = (function () {
     function Domain(name, config, swfClient) {

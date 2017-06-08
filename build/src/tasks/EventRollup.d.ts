@@ -1,4 +1,3 @@
-/// <reference types="chai" />
 import { SWF } from 'aws-sdk';
 export interface Event {
     id: string;

@@ -1,5 +1,3 @@
-/// <reference types="node" />
-/// <reference types="chai" />
 import { SWF } from 'aws-sdk';
 import { Domain } from './Domain';
 export declare class ActivityTypeInfo {

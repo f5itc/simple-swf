@@ -1,6 +1,7 @@
 "use strict";
-var processEvents_1 = require('./processEvents');
-var _ = require('lodash');
+Object.defineProperty(exports, "__esModule", { value: true });
+var processEvents_1 = require("./processEvents");
+var _ = require("lodash");
 var EventRollup = (function () {
     function EventRollup(rawTask, workflowEnv) {
         this.data = processEvents_1.processEvents(rawTask.events);

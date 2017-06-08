@@ -1,7 +1,8 @@
 "use strict";
-var async = require('async');
-var processEvents_1 = require('../tasks/processEvents');
-var EventDeserializer_1 = require('../util/EventDeserializer');
+Object.defineProperty(exports, "__esModule", { value: true });
+var async = require("async");
+var processEvents_1 = require("../tasks/processEvents");
+var EventDeserializer_1 = require("../util/EventDeserializer");
 var objectAssign = require('object-assign');
 var WorkflowExecution = (function () {
     function WorkflowExecution(workflow, runInfo) {

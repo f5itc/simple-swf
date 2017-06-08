@@ -1,8 +1,9 @@
 "use strict";
-var chai_1 = require('chai');
-var aws_sdk_1 = require('aws-sdk');
-var util_1 = require('../../src/util');
-var sinonHelper_1 = require('../sinonHelper');
+Object.defineProperty(exports, "__esModule", { value: true });
+var chai_1 = require("chai");
+var aws_sdk_1 = require("aws-sdk");
+var util_1 = require("../../src/util");
+var sinonHelper_1 = require("../sinonHelper");
 describe('S3ClaimCheck', function () {
     describe('constructor', function () {
         it('should init properly and allowing passing a custom s3 client', function () {

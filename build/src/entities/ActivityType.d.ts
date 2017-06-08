@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { SWFConfig, ConfigGroup, ConfigOverride } from '../SWFConfig';
 import { Domain } from './Domain';
 import { Workflow } from './Workflow';

@@ -1,5 +1,3 @@
-/// <reference types="node" />
-/// <reference types="chai" />
 import { SWF } from 'aws-sdk';
 import { Workflow } from './Workflow';
 import { WorkflowInfo, TaskInput } from '../interfaces';

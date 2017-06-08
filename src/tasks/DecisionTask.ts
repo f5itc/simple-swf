@@ -205,7 +205,8 @@ export class DecisionTask extends Task<SWF.DecisionTask> {
             version: this.workflow.version
           },
           input: this.buildTaskInput(input, overrideEnv, initialEnv),
-          control: JSON.stringify(this.buildInitialControlDoc(maxRetry))
+          control: JSON.stringify(this.buildInitialControlDoc(maxRetry)),
+          tagList: this.workflowAttrs.tagList
         }
       }
     })

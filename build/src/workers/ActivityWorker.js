@@ -1,28 +1,36 @@
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var _ = require('lodash');
-var async = require('async');
-var tasks_1 = require('../tasks');
-var Worker_1 = require('./Worker');
-var buildIdentity_1 = require('../util/buildIdentity');
-var interfaces_1 = require('../interfaces');
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var _ = require("lodash");
+var async = require("async");
+var tasks_1 = require("../tasks");
+var Worker_1 = require("./Worker");
+var buildIdentity_1 = require("../util/buildIdentity");
+var interfaces_1 = require("../interfaces");
 var ActivityWorker = (function (_super) {
     __extends(ActivityWorker, _super);
     function ActivityWorker(workflow, opts) {
         if (opts === void 0) { opts = {}; }
+        var _this = this;
         // ensure string from overrides as ConfigOverride allows numbers
         var identity = (opts['identity'] || buildIdentity_1.buildIdentity('activity')).toString();
-        _super.call(this, workflow, identity);
-        this.config = workflow.config;
-        this.fieldSerializer = workflow.fieldSerializer;
-        this.opts = opts;
-        this.activityRegistry = {};
-        this.activeActivities = {};
-        this.swfClient = workflow.swfClient;
+        _this = _super.call(this, workflow, identity) || this;
+        _this.config = workflow.config;
+        _this.fieldSerializer = workflow.fieldSerializer;
+        _this.opts = opts;
+        _this.activityRegistry = {};
+        _this.activeActivities = {};
+        _this.swfClient = workflow.swfClient;
+        return _this;
     }
     ActivityWorker.prototype.buildApiRequest = function () {
         var defaults = this.config.populateDefaults({ entities: ['activity'], api: 'pollForActivityTask' }, this.opts);

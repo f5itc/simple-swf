@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { SWF } from 'aws-sdk';
 import { FieldSerializer } from './FieldSerializer';
 export declare class EventDeserializer {

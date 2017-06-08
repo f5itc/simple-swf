@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { SWF } from 'aws-sdk';
 import { SWFConfig, ConfigGroup } from '../SWFConfig';
 import { Workflow } from './Workflow';

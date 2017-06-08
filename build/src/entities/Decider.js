@@ -1,5 +1,6 @@
 "use strict";
-var SWFConfig_1 = require('../SWFConfig');
+Object.defineProperty(exports, "__esModule", { value: true });
+var SWFConfig_1 = require("../SWFConfig");
 var Decider = (function () {
     function Decider(workflow) {
         this.workflow = workflow;

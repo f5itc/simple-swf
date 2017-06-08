@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var ActivityTypeInfo = (function () {
     function ActivityTypeInfo(name, version) {
         this.name = name;

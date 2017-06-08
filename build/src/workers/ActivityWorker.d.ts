@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { SWF, Request } from 'aws-sdk';
 import { Activity, ActivityType, Workflow } from '../entities';
 import { ActivityTask } from '../tasks';

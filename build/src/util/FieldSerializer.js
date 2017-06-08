@@ -1,5 +1,6 @@
 "use strict";
-var async = require('async');
+Object.defineProperty(exports, "__esModule", { value: true });
+var async = require("async");
 // we can go to about 32k, but we cap it quite a bit smaller for reasons...
 var DefaultLenLim = 10000;
 exports.DefaultFields = ['input', 'control', 'reason', 'details', 'result'];

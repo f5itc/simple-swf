@@ -1,5 +1,6 @@
 "use strict";
-var _1 = require('./');
+Object.defineProperty(exports, "__esModule", { value: true });
+var _1 = require("./");
 var EventDeserializer = (function () {
     function EventDeserializer(eventsToDeserialize, fieldSerializer) {
         if (typeof eventsToDeserialize === 'object') {

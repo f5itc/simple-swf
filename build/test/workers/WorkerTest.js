@@ -1,9 +1,10 @@
 "use strict";
-var chai_1 = require('chai');
-var aws_sdk_1 = require('aws-sdk');
-var workers_1 = require('../../src/workers');
-var tasks_1 = require('../../src/tasks');
-var sinonHelper_1 = require('../sinonHelper');
+Object.defineProperty(exports, "__esModule", { value: true });
+var chai_1 = require("chai");
+var aws_sdk_1 = require("aws-sdk");
+var workers_1 = require("../../src/workers");
+var tasks_1 = require("../../src/tasks");
+var sinonHelper_1 = require("../sinonHelper");
 describe('Worker', function () {
     describe('loop', function () {
         var sandbox = sinonHelper_1.default();

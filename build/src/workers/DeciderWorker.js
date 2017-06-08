@@ -1,15 +1,21 @@
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var _ = require('lodash');
-var async = require('async');
-var tasks_1 = require('../tasks');
-var Worker_1 = require('./Worker');
-var buildIdentity_1 = require('../util/buildIdentity');
-var EventDeserializer_1 = require('../util/EventDeserializer');
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var _ = require("lodash");
+var async = require("async");
+var tasks_1 = require("../tasks");
+var Worker_1 = require("./Worker");
+var buildIdentity_1 = require("../util/buildIdentity");
+var EventDeserializer_1 = require("../util/EventDeserializer");
 // only try to deserialize these events types, since we really only
 // care about the 'result' field to build the env
 var EventsToDeserialize = {
@@ -24,14 +30,16 @@ var DeciderWorker = (function (_super) {
     __extends(DeciderWorker, _super);
     function DeciderWorker(decider, opts) {
         if (opts === void 0) { opts = {}; }
+        var _this = this;
         // ensure string from overrides as ConfigOverride allows numbers
         var identity = (opts['identity'] || buildIdentity_1.buildIdentity('activity')).toString();
-        _super.call(this, decider.workflow, identity);
-        this.decider = decider;
-        this.config = this.workflow.config;
-        this.swfClient = this.workflow.swfClient;
-        this.opts = opts;
-        this.deserializer = new EventDeserializer_1.EventDeserializer(EventsToDeserialize, this.workflow.fieldSerializer);
+        _this = _super.call(this, decider.workflow, identity) || this;
+        _this.decider = decider;
+        _this.config = _this.workflow.config;
+        _this.swfClient = _this.workflow.swfClient;
+        _this.opts = opts;
+        _this.deserializer = new EventDeserializer_1.EventDeserializer(EventsToDeserialize, _this.workflow.fieldSerializer);
+        return _this;
     }
     DeciderWorker.prototype.buildApiRequest = function () {
         var defaults = this.config.populateDefaults({ entities: ['decision'], api: 'pollForDecisionTask' }, this.opts);

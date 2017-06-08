@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.DecisionTypeAttributeMap = {
     CompleteWorkflowExecution: 'completeWorkflowExecutionDecisionAttributes',
     FailWorkflowExecution: 'failWorkflowExecutionDecisionAttributes',
