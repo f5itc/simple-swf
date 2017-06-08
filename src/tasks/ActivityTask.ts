@@ -70,7 +70,7 @@ export class ActivityTask extends Task<SWF.ActivityTask> {
   getInput(): any {
     return this.taskInput.input
   }
-  getInitialEnv(): Object {
+  getInitialEnv(): Object | null {
     return this.taskInput.initialEnv || null
   }
   getEnv(): Object {

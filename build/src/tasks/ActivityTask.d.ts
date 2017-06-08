@@ -17,7 +17,7 @@ export declare class ActivityTask extends Task<SWF.ActivityTask> {
         (err: CodedError, success: boolean);
     }): void;
     getInput(): any;
-    getInitialEnv(): Object;
+    getInitialEnv(): Object | null;
     getEnv(): Object;
     getOriginWorkflow(): string;
 }

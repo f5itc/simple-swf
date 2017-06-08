@@ -38,7 +38,7 @@ describe('Activity', () => {
     activityTypeMock.stubMethod('heartbeatTimeout').returns(10)
     let activity = new Activity(workflowMock, activityTypeMock, {rawTask: {activityId: '1234'}} as ActivityTask)
     it('should throw an error on default implementation', () => {
-      assert.throws(() => activity.run(null, {}, () => {}), 'overriden')
+      assert.throws(() => activity.run(null, {}, null, () => {}), 'overriden')
     })
   })
 
@@ -98,7 +98,7 @@ describe('Activity', () => {
       let runCalled = false
       let activity = new Activity(workflowMock, activityTypeMock, taskMock.object)
       activity.heartbeatInterval = 10
-      activity.run = function(input: any, env: Object | null, cb) {
+      activity.run = function(input: any, env: Object | null, initialEnv: Object | null, cb) {
         process.nextTick(() => {
           cb(new Error('a problem'), {status: 'failed'})
         })

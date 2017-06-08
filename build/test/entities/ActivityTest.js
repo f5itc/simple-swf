@@ -34,7 +34,7 @@ describe('Activity', function () {
         activityTypeMock.stubMethod('heartbeatTimeout').returns(10);
         var activity = new entities_1.Activity(workflowMock, activityTypeMock, { rawTask: { activityId: '1234' } });
         it('should throw an error on default implementation', function () {
-            chai_1.assert.throws(function () { return activity.run(null, {}, function () { }); }, 'overriden');
+            chai_1.assert.throws(function () { return activity.run(null, {}, null, function () { }); }, 'overriden');
         });
     });
     describe('stop', function () {
@@ -92,7 +92,7 @@ describe('Activity', function () {
             var runCalled = false;
             var activity = new entities_1.Activity(workflowMock, activityTypeMock, taskMock.object);
             activity.heartbeatInterval = 10;
-            activity.run = function (input, env, cb) {
+            activity.run = function (input, env, initialEnv, cb) {
                 process.nextTick(function () {
                     cb(new Error('a problem'), { status: 'failed' });
                 });
